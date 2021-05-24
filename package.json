@@ -1,0 +1,15 @@
+{
+  "name": "zoe",
+  "version": "1.0.0",
+  "description": "Plataforma de Desarrollo web",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "desarrollo",
+    "plataforma"
+  ],
+  "author": "Jprios <juan.pablo.rios8@gmail.com>",
+  "license": "MIT"
+}
