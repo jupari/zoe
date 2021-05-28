@@ -1,5 +1,5 @@
 .sidebar{
-    max-width: 80%;
+    width: 50px;
     height: 100vh;
     top: 80px;
     left: 0px;
@@ -8,11 +8,11 @@
     flex-direction: column;
     align-items: center;
     z-index: 99;
-    transition: all 0.5s ease-in-out;   
+    transition: all 0.5s ease;   
     background-color: $color-primary;
 
     & a{
-        padding-left: 0.5rem;
+        padding-left: 0;
         display: block;
     }
 
@@ -20,6 +20,10 @@
         display: inline-block;
         padding-right: 0.3rem;
 
+    }
+
+    & li a span{
+        display: none;
     }
 
     &__logo__container{
@@ -79,23 +83,25 @@
         color: $color-claro;
         background:rgba($color-opaco,0.5);
     }
+
+
 }
 
-.active{
-    transform: translate(-600px);
+
+#nav-toggle:checked+.sidebar
+{
+    width: 80%;
 }
 
-.opacity{
-    background-color: rgba($color-claro,0.5);
-    transition: all .5s ease;
-}
-
+#nav-toggle:checked+.sidebar li a span{
+    display: inline-block;
+} 
 
 
 @include for-size(m){
     .sidebar{
         max-width: 40%;
-        transition: all .5s ease-out;
+        transition: all .5s ease;
     }
 }
 
@@ -105,7 +111,7 @@
        height: 100vh;
        top: 0;
        left: 0;
-       transition: all 0.8s ease;
+       transition: all 0.3s ease;
    }
    .sidebar__nav{
         margin-top: 80px;
@@ -121,13 +127,22 @@
     }
 
     .sidebar__nav__opciones li a{
-        margin-left: 10px;
+        margin-left: 0;
         font-size: 1.6rem;
     }
-    .minimizar_sidebar{
-        max-width: 5%;
-        overflow: hidden;
+
+    .sidebar__nav__opciones li a span{
+        display: inline-block;
+    }
+
+    #nav-toggle:checked+.sidebar
+    {
+        width: 4%;
         transition: all 0.5s ease;
+    }
+
+    #nav-toggle:checked+.sidebar li a span{
+        display: none;
     } 
 }
 
@@ -137,7 +152,7 @@
         height: 100vh;
         top: 0;
         left: 0;
-        transition: all 0.8s ease;
+        transition: width 0.5s ease;
     }
     .sidebar__nav{
          margin-top: 80px;
@@ -154,12 +169,22 @@
      }
  
      .sidebar__nav__opciones li a{
-         margin-left: 25px;
+         margin-left: 0;
          font-size: 1.8rem;
+        
      }
-     .minimizar_sidebar{
-        max-width: 5%;
-        overflow: hidden;
-        transition: all 0.5s ease;
-    } 
+
+    .sidebar__nav__opciones li a span{
+        display: inline-block;
+    }
+
+     #nav-toggle:checked+.sidebar
+     {
+         width: 4%;
+     }
+ 
+     #nav-toggle:checked+.sidebar li a span{
+         display: none;
+     } 
+    
  }

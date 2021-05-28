@@ -66,6 +66,8 @@ html{
             margin: auto;
             grid-column: 4/10;
             display: flex;
+            justify-content: center;
+            align-items: center;
             flex-direction: column;
             & p{
                 margin-top:20px;
@@ -88,6 +90,8 @@ html{
             margin: auto;
             grid-column: 4/10;
             display: flex;
+            justify-content: center;
+            align-items: center;
             flex-direction: column;
             & p{
                 margin-top:20px;

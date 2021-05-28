@@ -9,8 +9,8 @@
         
     </head>
     <body class="opacity">
-        
-        <sidebar class="sidebar active" id="menu_lateral">
+        <input type="checkbox"  id="nav-toggle">
+        <sidebar class="sidebar" id="menu_lateral">
             <div class="sidebar__logo__container">
                 <div class="sidebar__logo">
                     <img src="../assets/img/logo.png" alt="Logo empresa">
@@ -46,8 +46,12 @@
             </nav>
         </sidebar>
         <div class="main__container__ppal">
-            <header class="header active_header">
-                <div class="header__menu" id="menuh"><img src="../assets/icons/menu-icon-hamburguesa.png" alt="menu"></div>
+            <header class="header">
+                <div class="header__menu" id="menuhi">
+                    <label for="nav-toggle">
+                        <i class="fi-rr-align-justify"></i>
+                    </label>   
+                </div>
                 <div class="header__perfi__buscador">
                     <span class="fr fi-rr-search"></span>
                     <input type="search" placeholder="Buscar aquí" />
@@ -76,6 +80,6 @@
                 <h2>Contenedor Principal...</h2>
             </main>
         </div>
-        <script src="../js/menu.js"></script>
+        
     </body>
 </html>

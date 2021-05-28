@@ -1,26 +1,28 @@
 .main__container__ppal{
-    transition: margin-left 300ms;
-    //margin-left: 20%;
+    width: 100%;
+    transition: all 0.5s ease;
 }
-
 main{
-    margin-top: 80px;
+    height: calc(100vh - 80px);
+    margin-top: 60px ;
     padding: 2rem 1.5rem;
     background: $color-claro;
-    min-height: calc(100vh - 80px);
+    
 }
 
 @include for-size(l){
     .main__container__ppal{
+        width: 80%;
         margin-left: 20%;
-        transition: margin-left 300ms;
-    }
-
-    .main__max{
-        margin-left: 0;
-        transition:  margin-left 300ms;
+        transition: all 0.5s ease;
     }
     .padding_main{
         padding: 2rem 1.5rem  2rem 9rem;
+    }
+
+    #nav-toggle:checked~.main__container__ppal{
+        width: 96%;
+        margin-left: 4%;
+        transition: all 0.5s ease;       
     }
 }
