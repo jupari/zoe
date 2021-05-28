@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Home</title>
+        <link href="../css/app.css" rel="stylesheet" />
+        <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+        
+    </head>
+    <body class="opacity">
+        
+        <sidebar class="sidebar active" id="menu_lateral">
+            <div class="sidebar__logo__container">
+                <div class="sidebar__logo">
+                    <img src="../assets/img/logo.png" alt="Logo empresa">
+                </div>
+            </div>
+            <nav class="sidebar__nav">
+                <ul class="sidebar__nav__opciones">
+                    <li>
+                        <a href="#" class="activo">
+                            <i class="fi-rr-home"></i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fi-rr-apps"></i>
+                            <span>Modulos</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fi-rr-document-signed"></i>
+                            <span>Reportes</span> 
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fi-rr-settings"></i>
+                            <span>Configuración</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </sidebar>
+        <div class="main__container__ppal">
+            <header class="header active_header">
+                <div class="header__menu" id="menuh"><img src="../assets/icons/menu-icon-hamburguesa.png" alt="menu"></div>
+                <div class="header__perfi__buscador">
+                    <span class="fr fi-rr-search"></span>
+                    <input type="search" placeholder="Buscar aquí" />
+                </div>                
+                <div class="header__perfil__container">
+                    <div class="header__perfil__notificacion">
+                        <img src="../assets/icons/notify-icon.png" alt="notificacion">
+                    </div>
+                    <div class="header__perfil">
+                        <div class="header__perfil__imagen">
+                            <div class="header__perfil__imagen--foto">
+                                <img src="../assets/img/foto-perfil.jpg"  alt="foto de perfil">
+                            </div>
+                            <div class="header__perfil__opciones">
+                                <p class="header__perfil__imagen--nombre"><a href="#">Juan Pablo R.</a></p>
+                                <ul class="header__perfil__opciones--lista">
+                                    <li><a href="#">Perfil</a></li>
+                                    <li><a href="#">Cerrar Sesion</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <main id="ppal">
+                <h2>Contenedor Principal...</h2>
+            </main>
+        </div>
+        <script src="../js/menu.js"></script>
+    </body>
+</html>

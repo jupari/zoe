@@ -1,0 +1,171 @@
+.header{
+    width:100%;
+    height:80px;
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 2px 2px 5px rgba(0,0,0, 0.2);
+    left: 0;
+    top:0;
+    z-index: 99;
+    background-color: $color-claro;
+    &__menu{
+       grid-column: 1/2;
+       justify-self: left;
+       align-self: center;
+    }
+
+    &__menu img{
+        width: 35px;
+        height: 35px;
+        margin-left: 5px;
+        cursor: pointer;
+    }
+
+    &__perfil__container{
+        grid-column: 2/-1;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+     }
+
+    &__perfil__notificacion{
+        width: 20%;
+        height: 20px;
+        grid-column: 2/3;
+        justify-self: center;
+        align-self: center;
+    }
+    &__perfil__notificacion img{
+        width: 100%;
+        height: 100%;
+    }
+
+    &__perfi__buscador{
+        border: 1px solid #ccc;
+        border-radius: 30px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        overflow-x: hidden;
+    }
+
+    &__perfi__buscador span{
+        display: inline-block;
+        padding: 0rem 1rem;
+        font-size: 1.5rem;
+    }
+
+    &__perfi__buscador input{
+        height: 100%;
+        padding: .5rem;
+        border: none;
+        outline: none;
+    }
+
+    &__perfil{
+        padding: 0 30px 0 0;
+        grid-column: 3/4;
+        justify-self: center;
+        align-self: center;
+    }
+
+    &__perfil__imagen{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    &__perfil__imagen--foto{
+        width: 40px;
+        height: 40px;
+    }
+
+    &__perfil__imagen--foto img{
+        width: 100%;
+        border-radius:50%;
+        object-fit: cover;
+    }
+
+    &__perfil__opciones{
+        width: 100%;
+        padding: 0 5px;
+        display: none;
+    }
+    &__perfil__opciones p{
+        margin-top: 10px;
+        font-size: 1.0rem;
+        line-height: 1.4rem;
+        cursor: pointer;
+        transition: all 0.5s ease-in;
+    }
+
+    &__perfil__opciones p a{
+        text-decoration: none;
+        color: $color-oscuro;
+    }
+
+    &__perfil__opciones--lista{
+        margin-top: 10px;
+        display: none;
+        position: absolute;
+        list-style: none;
+        font-size: 1.2rem;
+        line-height: 2.5rem;
+    }
+
+    &__perfil__opciones p a:hover  &__perfil__opciones--lista{
+        display: block;
+    }
+
+    &__perfil__opciones--lista li a{
+        text-decoration: none;
+        color:$color-oscuro;
+    }
+
+    &__perfil__opciones--lista li a:hover{
+        border-bottom: 1px solid $color-oscuro;
+    }
+}
+
+
+
+@include for-size(m){
+    .header{
+        width: 100%;
+    }
+    .header__perfil__notificacion{
+        width: 10%;
+        height: 15px;
+        justify-self: right;
+        align-self: center;
+        margin-left: 30px;
+    }
+    .header__perfil{
+        justify-self: right;
+    }
+
+}
+
+@include for-size(l){
+    .header{
+        width: calc(100% - 20%);
+        left: 20%;
+        transition: all 0.5s ease-out;
+        
+    }
+    .header__perfil{
+        justify-self: center;
+        align-self: center;
+    }
+    .header__perfil__imagen--nombre a{
+        font-size: 1.4rem;
+    }
+    .active_header{
+        width: 95%;
+        top: 0;
+        left: 5%;
+        transition: all 0.5s ease-in-out;
+    }
+
+}

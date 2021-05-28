@@ -1,0 +1,165 @@
+.sidebar{
+    max-width: 80%;
+    height: 100vh;
+    top: 80px;
+    left: 0px;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 99;
+    transition: all 0.5s ease-in-out;   
+    background-color: $color-primary;
+
+    & a{
+        padding-left: 0.5rem;
+        display: block;
+    }
+
+    & span{
+        display: inline-block;
+        padding-right: 0.3rem;
+
+    }
+
+    &__logo__container{
+        width: 100%;
+        max-height: 30vh;
+        margin: 0 auto;
+        background-color: $color-opaco;        
+    }
+    &__logo{
+        width: 90%;
+        height: 90%;
+        display: flex;
+        justify-content: center;
+       
+    }
+    &__logo img{
+        width: 60%;
+        height: 100%;
+        object-fit: cover;
+    }
+    &__nav{
+        width: 100%;
+        margin-top: 20px;
+    }
+    &__nav__opciones{
+        padding: 0 10px;
+        list-style: none;
+        line-height: 4.0rem;
+        letter-spacing: 0.2rem;
+        font-family: $fuente2;
+        color: $color-claro;
+
+    }
+
+    &__nav__opciones li{
+        width: 100%;
+        font-size: 1.4rem;
+    }
+
+    &__nav__opciones li:hover{
+        background-color: rgba($color-claro,0.6);
+    }
+
+    &__nav__opciones li i{
+        margin: 0 10px;
+        font-size: 1.4rem;
+    }
+    &__nav__opciones li a{
+        text-decoration: none;
+        color: $color-claro;
+    }
+
+    &__nav__opciones li a.activo {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        border-radius: 30px 0px 0px 30px;
+        color: $color-claro;
+        background:rgba($color-opaco,0.5);
+    }
+}
+
+.active{
+    transform: translate(-600px);
+}
+
+.opacity{
+    background-color: rgba($color-claro,0.5);
+    transition: all .5s ease;
+}
+
+
+
+@include for-size(m){
+    .sidebar{
+        max-width: 40%;
+        transition: all .5s ease-out;
+    }
+}
+
+@include for-size(l){
+   .sidebar{
+       width: 20%;
+       height: 100vh;
+       top: 0;
+       left: 0;
+       transition: all 0.8s ease;
+   }
+   .sidebar__nav{
+        margin-top: 80px;
+    }
+
+    .sidebar__nav__opciones li{
+        line-height: 3.0rem;
+        margin-bottom: 15px;
+    }
+
+    .sidebar__nav__opciones li i{
+        font-size: 1.6rem;
+    }
+
+    .sidebar__nav__opciones li a{
+        margin-left: 10px;
+        font-size: 1.6rem;
+    }
+    .minimizar_sidebar{
+        max-width: 5%;
+        overflow: hidden;
+        transition: all 0.5s ease;
+    } 
+}
+
+@include for-size(xl){
+    .sidebar{
+        max-width: 20%;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        transition: all 0.8s ease;
+    }
+    .sidebar__nav{
+         margin-top: 80px;
+     }
+ 
+     .sidebar__nav__opciones li{
+         line-height: 3.0rem;
+         margin-bottom: 20px;
+     }
+ 
+     .sidebar__nav__opciones li i{
+         font-size: 1.6rem;
+        
+     }
+ 
+     .sidebar__nav__opciones li a{
+         margin-left: 25px;
+         font-size: 1.8rem;
+     }
+     .minimizar_sidebar{
+        max-width: 5%;
+        overflow: hidden;
+        transition: all 0.5s ease;
+    } 
+ }

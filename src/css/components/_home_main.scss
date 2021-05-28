@@ -1,0 +1,26 @@
+.main__container__ppal{
+    transition: margin-left 300ms;
+    //margin-left: 20%;
+}
+
+main{
+    margin-top: 80px;
+    padding: 2rem 1.5rem;
+    background: $color-claro;
+    min-height: calc(100vh - 80px);
+}
+
+@include for-size(l){
+    .main__container__ppal{
+        margin-left: 20%;
+        transition: margin-left 300ms;
+    }
+
+    .main__max{
+        margin-left: 0;
+        transition:  margin-left 300ms;
+    }
+    .padding_main{
+        padding: 2rem 1.5rem  2rem 9rem;
+    }
+}

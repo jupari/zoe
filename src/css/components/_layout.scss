@@ -1,0 +1,117 @@
+$xs: 360px;
+$s: 440px;
+$m:768px;
+$l: 1280px;
+$xl: 1440px;
+
+
+@mixin for-size($size) {
+    @if $size == xs {
+        @media (max-width: $s){
+            @content;
+        }
+    }
+    @else if $size == m {
+        @media (min-width: $m){
+            @content;
+        }
+    }
+    @else if $size == l{
+        @media (min-width: $l){
+            @content;
+        }
+    }
+    @else if $size == xl{
+        @media (min-width:$xl) {
+            @content;
+        }
+    }
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+:root{
+    --columns: 4;
+    --column-gap: 6.67%;
+
+    @include for-size(m){
+        --columns: 12;
+        --column-gap: 2.27%;
+    }
+
+    @include for-size(l){
+        --columns: 12;
+        --column-gap: 2.19%
+    }
+}
+
+html{
+    font-size: 62.5%;
+    font-family: $fuente1;
+    color:$color-oscuro;
+}
+
+.grid{
+    margin: 0 auto;
+
+    @include for-size(m){
+        margin: 0 auto;
+        .main__container{
+            width: 80%;
+            margin: auto;
+            grid-column: 4/10;
+            display: flex;
+            flex-direction: column;
+            & p{
+                margin-top:20px;
+                font-size: 1.2rem;
+                color: $color-claro; 
+            }
+        }
+        .main__container__login{
+            padding: 20px;
+        }
+        .main__container__login--body{
+            padding: 10px;
+        }
+        
+    }
+    @include for-size(l){
+        margin: 0 auto;
+        .main__container{
+            width: 70%;
+            margin: auto;
+            grid-column: 4/10;
+            display: flex;
+            flex-direction: column;
+            & p{
+                margin-top:20px;
+                font-size: 1.2rem;
+                color: $color-claro; 
+            }
+        }
+        .main__container__login{
+            padding: 20px;
+        }
+        .main__container__login--body{
+            padding: 10px;
+        }
+    }
+    @include for-size(xl){
+        margin: 0 auto;
+        //max-width: 1280px;
+    }
+}
+
+.grid,
+.subgrid{
+    display: grid;
+    grid-template-columns: repeat(var(--columns), minmax(0, 1fr));
+    grid-column-gap:var (--column-gap);
+    position: relative;
+}
