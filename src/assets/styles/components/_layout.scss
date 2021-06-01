@@ -28,6 +28,20 @@ $xl: 1440px;
     }
 }
 
+@mixin margen( $cord, $size ) {
+    @if $cord == izquierda{
+        @content;
+    }
+    @else if $cord == derecha{
+        @content;
+    }@else if $cord == arriba{
+        @content;
+
+    }@else if $cord == abajo{
+        @content;
+    }
+}
+
 *{
     margin: 0;
     padding: 0;

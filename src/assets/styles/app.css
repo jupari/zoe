@@ -1,4 +1,16 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Rubik:wght@400;500;600&display=swap");
+@font-face {
+  font-family: 'Roboto';
+  src: url('../fonts/roboto-v27-latin-regular.woff') format('woff');
+  font-weight: 300, 500, 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Rubik';
+  src: url('../fonts/rubik-v12-latin-regular.woff') format('woff');
+  font-weight: 500, 600;
+  font-style: normal;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -114,7 +126,6 @@ html {
 .subgrid {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: ;
   grid-template-columns: repeat(var(--columns), minmax(0, 1fr));
   grid-column-gap: var --column-gap;
   position: relative;
@@ -433,7 +444,7 @@ html {
     font-size: 1.4rem;
   }
 
-  #nav-toggle:checked ~ .main__container__ppal header {
+  #nav-toggle:checked~.main__container__ppal header {
     width: calc(100% - 4%);
     left: 4%;
     -webkit-transition: all 0.5s ease;
@@ -618,11 +629,11 @@ html {
     display: inline-block;
   }
 
-  #nav-toggle:checked + .sidebar {
+  #nav-toggle:checked+.sidebar {
     width: 4%;
   }
 
-  #nav-toggle:checked + .sidebar li a span {
+  #nav-toggle:checked+.sidebar li a span {
     display: none;
   }
 }
