@@ -1,8 +1,10 @@
 import React from 'react';
 
-const ContenedorPpal = ({children}) => (
-    <main id="ppal">
-    {children}
-    </main>
-);
+const ContenedorPpal = ({children}) => {
+    return (
+        <main id="ppal">
+            {children}
+        </main>
+    );
+};
 export default ContenedorPpal;

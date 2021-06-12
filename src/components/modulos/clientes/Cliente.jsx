@@ -6,26 +6,37 @@ import ListClientes from './ListClientes';
 
 const Cliente = () => {
       const URI = process.env.API;
-      const [clientes, setClientes ] = useState([]);
-      const [cliente, setCliente]= useState({
-         _id:undefined,
-         identificacion:"",
-         dv:"",
-         nombres:"",
-         apellidos:"",
-         razonsocial:"",
-         telefono:"",
-         email:"",
-         observacion:"",
-
-      });
       
+      
+      const [isOpen, setIsOpen] = useState(false);
+
+      const openModal = () => {
+         setIsOpen(true)
+      }
+
+      const closeModal = () => {
+         setIsOpen(false)
+      }
+
+      const [configmodal, setModal] = useState({
+         title:"",
+         icono:"",
+         tipo:""
+      });
+
+      const handleModal = (info) =>{
+         setModal(
+            {
+               title:info.title,
+               icono:info.icono,
+               tipo: info.tipo
+            }
+         );
+      }
 
       const getClientes =  async () => {
          try {
-            const respuesta = await axios(`${URI}/api/clientes`);
-            const clientes = respuesta.data.data;
-            setClientes(clientes)
+
          } catch (error) {
             console.log(error);
          }
@@ -43,7 +54,7 @@ const Cliente = () => {
       const getCliente = async (id) => {
          try {
             const clires = await axios.get(`${URI}/api/clientes/${id}`)
-            setCliente(clires.data.data);
+            //setCliente(clires.data.data);
          } catch (error) {
             console.log(error);
          }
@@ -60,15 +71,11 @@ const Cliente = () => {
       const deleteCliente = async (id) =>{
          try {
             const deletedCliente = await axios.delete(`${URI}/api/clientes/${id}`);
+            closeModal()
          } catch (error) {
-            console(error);
+            console.log('Erro deleteCliente: ',error);
          }
       }
-
-
-      useEffect(  ()=>{
-         getClientes(); 
-      },[clientes])
 
       return (
         <div className="container__tabs">
@@ -79,12 +86,28 @@ const Cliente = () => {
             </div>
             <div className="container__tabs__body">
                   <input type="radio" name="tab" id="tab1" defaultChecked/>
-                  <div className="tab tab-1">
-                     <FormAddNew cliente={cliente} setCliente={setCliente} saveCliente={saveCliente} updateCliente={updateCliente} /> 
+                  <div className="tab tab-1 table-responsive">
+                     <FormAddNew
+                        saveCliente={saveCliente} 
+                        updateCliente={updateCliente} 
+                        isOpen={isOpen}
+                        closeModal={closeModal}
+                        openModal={openModal}
+                        configmodal={configmodal}
+                        handleModal={handleModal}
+                     /> 
                   </div>
                   <input type="radio" name="tab"  id="tab2"/>
-                  <div className="tab tab-2">
-                     <ListClientes listClientes={clientes} getCliente={getCliente} deleteCliente={deleteCliente}/> 
+                  <div className="tab tab-2 table-responsive">
+                     <ListClientes 
+                        getCliente={getCliente} 
+                        deleteCliente={deleteCliente}
+                        isOpen={isOpen}
+                        openModal={openModal}
+                        closeModal={closeModal}
+                        configmodal={configmodal}
+                        handleModal={handleModal}
+                     /> 
                   </div>
             </div>
          </div>

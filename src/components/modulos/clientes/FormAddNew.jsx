@@ -1,7 +1,37 @@
-import React,{useState, useEffect} from 'react';
+import React,{useEffect, useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import { editarClienteAction,agregarClienteAction } from '../../../actions/clienteActions';
+
+const FormAddNew = () => {
+
+    const [cliente, setCliente]= useState({
+        _id:undefined,
+        identificacion:"",
+        dv:"",
+        nombres:"",
+        apellidos:"",
+        razonsocial:"",
+        telefono:"",
+        email:"",
+        observacion:"",
+        activo:true,
+     });
+    const dispatch = useDispatch()
+    //ACCEDE AL STORE MODIFICADO CON EL CLIENTE PARA EDITAR
+    let clienteStore = useSelector(state => state.clientes.cliente);
+    //CUANDO SE ABRE EL FORMULARIO SIN NINGUN CLIENTE SE REALIZA LA VERIFICACION PARA QUE NO 
+    // GENERE ERROR
+    if (Object.keys(clienteStore).length === 0){
+        clienteStore = cliente
+    }
+
+    // SE ACTUALIZA EL STATE CLIENTE PARA MOSTRARLO EN PANTALLA
+    useEffect(()=>{
+        setCliente(clienteStore);
+    },[clienteStore]);
 
 
-const FormAddNew = ({cliente, setCliente,saveCliente,updateCliente}) => {
+    //SE CAPTURA LO QUE DIGITE EL USUARIO EN EL FORMULARIO
     const onChange=(e)=>{
         setCliente({
             ...cliente,
@@ -9,18 +39,38 @@ const FormAddNew = ({cliente, setCliente,saveCliente,updateCliente}) => {
         })
     }
 
+    //EL SUBMIT DEL FORMULARIO
     const onSubmit = (e)=>{
         e.preventDefault();
         if (cliente._id){
-            updateCliente(cliente._id, cliente)
+            dispatch ( editarClienteAction(cliente) );
+            const tab2 = document.querySelector('#tab2')
+            tab2.checked= true;
         }else{
-            saveCliente();            
+            console.log(cliente)
+            dispatch ( agregarClienteAction(cliente) )
+            const tab2 = document.querySelector('#tab2')
+            tab2.checked= true;
         }
     }
 
+    // SE LIMPIA LOS INPUT PARA QUE EL USUARIO DIGITE NUEVAMENTE
     const limpiar = () => {
-
+        setCliente({
+            _id:undefined,
+            identificacion:"",
+            dv:"",
+            nombres:"",
+            apellidos:"",
+            razonsocial:"",
+            telefono:"",
+            email:"",
+            observacion:"",
+            activo:false
+         }
+        )
     }
+    
     return (
         <form onSubmit={onSubmit}>
             <div className="row">
@@ -63,7 +113,7 @@ const FormAddNew = ({cliente, setCliente,saveCliente,updateCliente}) => {
                             className="form-control" 
                             placeholder="Apellidos" 
                             id="apellidos" 
-                            value={cliente.Apellidos}
+                            value={cliente.apellidos}
                             name="apellidos"
                             onChange={onChange} 
                             autoComplete="on"/>
@@ -113,12 +163,13 @@ const FormAddNew = ({cliente, setCliente,saveCliente,updateCliente}) => {
                             value={cliente.observacion}
                             name="observacion"
                             onChange={onChange}
-                            placeholder="Obs" id="observacion" />
+                            placeholder="Obs" id="observacion" 
+                        />
                 </label>
             </div>
-            <div className="row">
-                <button className="button btn-success">Guardar</button>
-                <button type="button" onClick={limpiar} className="button btn-delete">Cancelar</button>
+            <div className="row col-md-12 btn-zone">
+                <button className="button btn-success col-md-2">Guardar</button>
+                <button type="button" onClick={limpiar} className="button btn-delete col-md-2">Cancelar</button>
             </div>
         </form>
     );

@@ -1,30 +1,72 @@
-import React,{Fragment} from 'react';
+import React,{ Fragment, useEffect, useState } from 'react';
+import {useSelector, useDispatch} from 'react-redux';
+import {descargarClientes} from '../../../actions/clienteActions';
+import LineCliente from './LineCliente';
 
-const ListClientes = ({listClientes, getCliente,deleteCliente})=>{
 
+const ListClientes = ()=>{
+
+    const dispatch = useDispatch();
+
+    let clientes=[];
+
+    useEffect(()=>{
+        const traerClientes = () => dispatch ( descargarClientes() );
+        traerClientes();
+
+    },[])
+
+    const clientesws = useSelector(state => state.clientes.clientes);
+    clientesws.map(cliente =>{
+        clientes = cliente
+    })
+      
     const editarCliente = (e) =>{
         const row = e.target.parentNode.parentNode.parentNode;
         const id = row.children[0].innerHTML
         getCliente(id);
-        const tab1 = document.querySelector('#tab1')
-        tab1.checked= true;
+        
     }
+    
+    const [idCliente, setIdCliente]= useState(0);
 
-    const borrarCliente = (e) =>{
+    const selIdCliente = (e) =>{
         const row = e.target.parentNode.parentNode.parentNode;
         const id = row.children[0].innerHTML
+        if(id.length < 30 ){
+            setIdCliente(id);
+            handleModal({
+                title: "Esta seguro de Eliminar el Cliente",
+                icono: "../../../assets/img/delete.png",
+                tipo: "pregunta"
+            })
+            openModal();
+        }
+    }
+
+    const borrarCliente = (id) =>{
         deleteCliente(id);
     }
 
     return(
         <>
-            <h4 className="col-md-4">Clientes Registrados.</h4>
+            <div className="btn-zone">
+                <h3 className="col-md-3">Clientes Registrados.</h3>
+                <input type="text" 
+                       className="text-control col-md-4" 
+                       id="valor-buscar" 
+                       name="valor-buscar" 
+                       placeholder="Buscar"/>
+            </div>
+
             <div className="row">
-                <table className="table table-bordered table-hover table-striped">
+                <table className="table table-bordered table-hover table-striped table-responsive">
                     <thead>
                         <tr>
                             <th className="ocultar">Id</th>
                             <th>Identificación</th>
+                            <th>Nombres</th>
+                            <th>Apellidos</th>
                             <th>Nombre/Razón Social</th>
                             <th>Teléfono</th>
                             <th>Email</th>
@@ -33,23 +75,23 @@ const ListClientes = ({listClientes, getCliente,deleteCliente})=>{
                         </tr>
                     </thead>
                     <tbody>
-                        {listClientes.map((cliente)=>(
-                            <tr key={cliente._id}>
-                               <td className="ocultar" id="id" name="id">{cliente._id}</td> 
-                               <td>{cliente.identificacion}</td>
-                               <td>{cliente.razonsocial}</td>
-                               <td>{cliente.telefono}</td>
-                               <td>{cliente.email}</td>
-                               <td>{cliente.observacion}</td>
-                               <td> <button type="button" onClick={editarCliente} className="button btn-success btn-sm"><i className="fi fi-rr-pencil"></i>
-                                    </button>
-                                    <button type="button" onClick={borrarCliente} className="button btn-delete btn-sm"><i className="fi fi-rr-trash"></i>
-                                    </button>
-                               </td>
-                           </tr> 
-                        ))}
+                        {clientes.length > 0
+                            ?(clientes.map((cliente)=>(
+                                <LineCliente    
+                                    key={cliente._id}
+                                    cliente={cliente}
+                                />
+                            )))
+                            :(<tr><td colSpan="6">No hay Clientes...</td></tr>)}
                     </tbody>
                 </table>
+                {/* <ModalCliente 
+                    isOpen={isOpen} 
+                    configmodal={configmodal}
+                    idCliente={idCliente}
+                    borrarCliente={borrarCliente}
+                    closeModal={closeModal}>
+                </ModalCliente>    */}
             </div>
         </>
     )

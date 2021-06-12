@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import logo from '../../assets/img/logo.png';
 
 const Login = () => (
@@ -12,15 +13,15 @@ const Login = () => (
                     <div className="main__container__login--body">
                         <form action="#">
                             <div className="input-login">
-                                <label for="user">Usuario</label>
+                                <label htmlFor="user">Usuario</label>
                                 <input type="text" id="user" placeholder="Usuario"/>
                             </div>
                             <div className="input-login">
-                                <label for="password">Contraseña</label>
+                                <label htmlFor="password">Contraseña</label>
                                 <input type="password" id="password" placeholder="Contraseña"/>
                             </div>
                             <div className="login__submit">
-                                <button>Login</button>
+                                <Link to={'/'}>Login</Link>
                             </div>
                         </form>
                     </div>
